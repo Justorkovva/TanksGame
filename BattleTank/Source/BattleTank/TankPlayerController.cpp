@@ -38,7 +38,8 @@ void ATankPlayerController::AimTowardsCrosshair() { //celowanie
 	if (!GetControlledTank()) { return; }
 	FVector OutHitLocation;
 	if (GetSightRayHitLocation(OutHitLocation)) { // sprawdzam czy nie celuje w niebo
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
+		GetControlledTank()->AimAt(OutHitLocation);
 	}
 
 }
