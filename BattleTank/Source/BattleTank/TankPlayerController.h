@@ -21,6 +21,22 @@ public:
 
 protected:
 	void BeginPlay() override; 
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	void AimTowardsCrosshair();
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
+
+
+	UPROPERTY(EditAnywhere)
+		float CrosshairLocationX = 0.5; 
+
+	UPROPERTY(EditAnywhere)
+		float CrosshairLocationY = 0.33333;
+
+
 	
 	
 	
