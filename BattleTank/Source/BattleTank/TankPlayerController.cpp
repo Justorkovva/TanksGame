@@ -36,9 +36,9 @@ void ATankPlayerController::Tick(float DeltaTime)
 void ATankPlayerController::AimTowardsCrosshair() { //celowanie 
 
 	if (!GetControlledTank()) { return; }
-	FVector HitLocation;
-	if (GetSightRayHitLocation(HitLocation)) { // sprawdzam czy nie celuje w niebo
-	//	UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *HitLocation.ToString());
+	FVector OutHitLocation;
+	if (GetSightRayHitLocation(OutHitLocation)) { // sprawdzam czy nie celuje w niebo
+		UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
 	}
 
 }
@@ -52,13 +52,10 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{	
-			UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *LookDirection.ToString());
+			//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *LookDirection.ToString());
+		GetLookVectorHitLocation(LookDirection, OutHitLocation);
 		
 	}
-
-
-	//OutHitLocation = FVector(1.0);
-
 	return true;
 }
 
@@ -69,6 +66,27 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 	//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *WorldDirection.ToString());
 	
 	return true;
+}
+
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector& OutHitLocation) const {
+
+	FHitResult HitResult;
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
+	auto EndLocation = StartLocation + (LookDirection*LineTraceRange);
+
+	if (GetWorld()->LineTraceSingleByChannel(
+		HitResult,
+		StartLocation,
+		EndLocation,
+		ECollisionChannel::ECC_Visibility
+	))
+	{
+		OutHitLocation=HitResult.Location;
+		return true;
+	}
+	OutHitLocation = FVector(0);
+	return false;
+
 }
 
 
