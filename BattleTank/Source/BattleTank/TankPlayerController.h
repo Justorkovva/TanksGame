@@ -8,9 +8,6 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
 {
@@ -23,7 +20,6 @@ protected:
 	void BeginPlay() override; 
 
 public:
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	void AimTowardsCrosshair();
@@ -41,9 +37,4 @@ public:
 	UPROPERTY(EditAnywhere)
 		float LineTraceRange = 1000000; // obstawiam, ze jest w centymetrach
 
-
-	
-	
-	
-	
 };
