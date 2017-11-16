@@ -28,9 +28,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 	AimTowardsCrosshair();
-	//UE_LOG(LogTemp, Warning, TEXT("Tick Tock"));
 }
 
 void ATankPlayerController::AimTowardsCrosshair() { //celowanie 

@@ -5,9 +5,13 @@
 #include "BattleTank.h"
 
 
-void UTankBarrel::Elevate(float DegreesPerSecond)
+UTankBarrel::UTankBarrel()
 {
+	PrimaryComponentTick.bCanEverTick = false;	
+}
 
-
+void UTankBarrel::Elevate(float RelativeSpeed)
+{
+	auto Time = GetWorld()->GetTimeSeconds();
 }
 

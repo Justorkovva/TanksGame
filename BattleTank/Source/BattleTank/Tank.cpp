@@ -2,18 +2,13 @@
 
 ATank::ATank()
 {
- 	PrimaryActorTick.bCanEverTick = true;
+ 	PrimaryActorTick.bCanEverTick = false;
 	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
 }
 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-void ATank::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input
