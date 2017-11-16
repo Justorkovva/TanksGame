@@ -16,8 +16,9 @@ void UTankTurret::RotateTurret(float RelativeSpeed)
 	//auto NewYaw = FMath::Clamp<float>(RawNewYaw, minElevationDegrees, maxElevationDegrees); TODO sprawdzic, bo nie wiadomo czy po 180 idzie dalej
 	SetRelativeRotation(FRotator(0, RawNewYaw, 0)); // ustawiam nowa rotacje dla dzia?a
 
-		UE_LOG(LogTemp, Warning, TEXT("Wchodze tu %f"), RawNewYaw);
+		//UE_LOG(LogTemp, Warning, TEXT("Wchodze tu %f"), RawNewYaw);
 	
+
 }
 
 

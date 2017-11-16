@@ -2,11 +2,12 @@
 #include "TankAimingComponent.h"
 #include "TankTurret.h"
 #include "TankBarrel.h"
+#include "Gameframework/Actor.h" 
 
 ATank::ATank()
 {
  	PrimaryActorTick.bCanEverTick = false;
-	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
+	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent")); 
 }
 
 void ATank::BeginPlay()
@@ -35,3 +36,7 @@ void ATank::SetTurretReference(UTankTurret* TurretToSet) {
 	AimingComponent->SetTurretReference(TurretToSet);
 }
 
+void ATank::Fire()
+{
+	UE_LOG(LogTemp, Error, TEXT("FIRE!!!"));
+}
