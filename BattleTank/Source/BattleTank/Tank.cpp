@@ -1,5 +1,7 @@
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "TankTurret.h"
+#include "TankBarrel.h"
 
 ATank::ATank()
 {
@@ -26,6 +28,10 @@ void ATank::AimAt(FVector HitLocation)
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
 	AimingComponent->SetBarrelReference(BarrelToSet);
+}
 
+void ATank::SetTurretReference(UTankTurret* TurretToSet) {
+
+	AimingComponent->SetTurretReference(TurretToSet);
 }
 
