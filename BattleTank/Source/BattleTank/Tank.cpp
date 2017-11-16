@@ -1,4 +1,5 @@
 #include "Tank.h"
+#include "TankAimingComponent.h"
 
 ATank::ATank()
 {
