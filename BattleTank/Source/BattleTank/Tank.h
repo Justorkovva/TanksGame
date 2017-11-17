@@ -43,6 +43,9 @@ public:
 private:
 	UTankBarrel* Barrel = nullptr;
 	UTankAimingComponent* AimingComponent = nullptr;
+	float ReloadTimeInSeconds = 3;
+	double LastFireTime = 0;
+
 	
 
 };
