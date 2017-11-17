@@ -2,14 +2,13 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-//#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
 class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
+class AProjectile;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -39,12 +38,18 @@ protected:
 		float LaunchSpeed = 10000;
 
 public:	
+	//jednak inaczej
+	//AProjectile* Projectile = nullptr;
+
+	UPROPERTY(EditAnywhere) // mamy mo?liwosc w Tank_BP dodac jaka tylko chcemy klase jako ProjectileBlueprint
+		UClass* ProjectileBlueprint;
 	
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	UTankBarrel* Barrel = nullptr;
 
 
-	
 };

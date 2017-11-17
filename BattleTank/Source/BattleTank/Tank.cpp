@@ -3,6 +3,8 @@
 #include "TankTurret.h"
 #include "TankBarrel.h"
 #include "Gameframework/Actor.h" 
+#include "BattleTank.h"
+#include "Projectile.h"
 
 ATank::ATank()
 {
@@ -28,7 +30,8 @@ void ATank::AimAt(FVector HitLocation)
 
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 {
-	AimingComponent->SetBarrelReference(BarrelToSet);
+	AimingComponent->SetBarrelReference(BarrelToSet); // przekazywana dalej do celowania
+	Barrel = BarrelToSet; // lokalna do wystrzalow
 }
 
 void ATank::SetTurretReference(UTankTurret* TurretToSet) {
@@ -38,5 +41,12 @@ void ATank::SetTurretReference(UTankTurret* TurretToSet) {
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Error, TEXT("FIRE!!!"));
+	if (!Barrel) { return; }
+	//UE_LOG(LogTemp, Error, TEXT("FIRE!!!"));
+
+	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
+		Barrel->GetSocketLocation(FName("Projectile")),
+		Barrel->GetSocketRotation(FName("Projectile"))
+		);
+
 }
