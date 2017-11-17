@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditAnywhere, Category = Firing) //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
 		float LaunchSpeed = 4000;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -43,6 +43,8 @@ public:
 private:
 	UTankBarrel* Barrel = nullptr;
 	UTankAimingComponent* AimingComponent = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
 	float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
 
