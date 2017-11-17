@@ -4,8 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankBarrel.generated.h"
 
-UCLASS(meta = (BlueprintSpawnableComponent), hidecategories = ("Collision")) // bedzie mozna ten komponent dodac do Tank_BP dzieki pierwszej deklaracji
-//a druga ukrywa kategorie jesli nie chcielibysmy zeby byla mozliwosc ich edytowania
+UCLASS(meta = (BlueprintSpawnableComponent)) // bedzie mozna ten komponent dodac do Tank_BP dzieki pierwszej deklaracji
 
 class BATTLETANK_API UTankBarrel : public UStaticMeshComponent
 {
