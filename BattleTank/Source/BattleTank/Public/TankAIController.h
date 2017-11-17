@@ -1,7 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
 
 #include "BattleTank.h"
 #include "AIController.h"
@@ -17,12 +14,4 @@ class BATTLETANK_API ATankAIController : public AAIController
 protected:
 	void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-
-	
-
-	uint32 Shot = 1;
-	
-	
-	
-	
 };

@@ -10,18 +10,11 @@ ATank::ATank()
 {
  	PrimaryActorTick.bCanEverTick = false;
 	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent")); 
-	
 }
 
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-// Called to bind functionality to input
-void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
 void ATank::AimAt(FVector HitLocation) 
@@ -35,18 +28,16 @@ void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
 	Barrel = BarrelToSet; // lokalna do wystrzalow
 }
 
-void ATank::SetTurretReference(UTankTurret* TurretToSet) {
-
+void ATank::SetTurretReference(UTankTurret* TurretToSet) 
+{
 	AimingComponent->SetTurretReference(TurretToSet);
 }
 
 void ATank::Fire()
 {
-	
-	bool IsReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTimeInSeconds;
+	bool IsReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTimeInSeconds; //FPlatformTime::Seconds() inna funkcja na czas
 
-	if (!Barrel) { return; }
-	if (IsReloaded) {
+	if (Barrel && IsReloaded) {
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 			Barrel->GetSocketLocation(FName("Projectile")),
 			Barrel->GetSocketRotation(FName("Projectile"))
@@ -55,6 +46,9 @@ void ATank::Fire()
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = GetWorld()->GetTimeSeconds();
 	}
-	//FPlatformTime::Seconds()
+}
 
+void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }

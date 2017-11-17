@@ -1,23 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
 #include "Tank.h"
 
-
 void ATankPlayerController::BeginPlay() {
 
 	Super::BeginPlay();
-
 	auto ControlledTank = GetControlledTank();
 
 	if (!ControlledTank) {
 		UE_LOG(LogTemp, Warning, TEXT("Player Controller not possesing a tank"));
 	}
-	else {
-		
-	}
-
-
 }
 
 ATank* ATankPlayerController::GetControlledTank() const 
@@ -25,25 +17,22 @@ ATank* ATankPlayerController::GetControlledTank() const
 	return Cast<ATank>(GetPawn());
 }
 
-
 void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
 }
 
-void ATankPlayerController::AimTowardsCrosshair() { //celowanie 
-
+void ATankPlayerController::AimTowardsCrosshair()  //celowanie 
+{
 	if (!GetControlledTank()) { return; }
 	FVector OutHitLocation;
 	if (GetSightRayHitLocation(OutHitLocation)) { // sprawdzam czy nie celuje w niebo
-		//UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *OutHitLocation.ToString());
 		GetControlledTank()->AimAt(OutHitLocation);
 	}
-
 }
 
-bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const 
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const  // zawsze zwraca true, ale wczesniej zmienia parametry
 {
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
@@ -52,9 +41,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{	
-			//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *LookDirection.ToString());
 		GetLookVectorHitLocation(LookDirection, OutHitLocation);
-		
 	}
 	return true;
 }
@@ -62,9 +49,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const {
 
 	FVector CameraWorldLocation;
-	DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldLocation, LookDirection);
-	//UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *WorldDirection.ToString());
-	
+	DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldLocation, LookDirection);	
 	return true;
 }
 
@@ -86,7 +71,4 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 	}
 	OutHitLocation = FVector(0);
 	return false;
-
 }
-
-
