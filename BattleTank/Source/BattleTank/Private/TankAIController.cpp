@@ -49,6 +49,11 @@ void ATankAIController::Tick(float DeltaTime)
 
 		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 	}
+
+	if (int((GetWorld()->GetTimeSeconds() )) % 5 == 2)
+	{
+		GetControlledTank()->Fire();
+	}
 }
 
 
