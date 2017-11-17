@@ -13,5 +13,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category=Input)
 	void SetThrottle(float Throttle);
 
-	
+
+	UPROPERTY(EditDefaultsOnly)
+		float TankMaxDrivingForce = 400000; //1g acceleration
+
 };
