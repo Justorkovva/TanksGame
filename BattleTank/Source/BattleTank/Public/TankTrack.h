@@ -15,6 +15,6 @@ public:
 
 
 	UPROPERTY(EditDefaultsOnly)
-		float TankMaxDrivingForce = 400000; //1g acceleration
+		float TankMaxDrivingForce = 100000000; //1g acceleration
 
 };
