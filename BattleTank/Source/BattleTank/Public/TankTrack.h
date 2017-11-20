@@ -4,6 +4,7 @@
 #include "TankTrack.generated.h"
 
 
+//Tank Track is used to set maximum driving force
 UCLASS(meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankTrack : public UStaticMeshComponent
 {
@@ -15,6 +16,6 @@ public:
 
 
 	UPROPERTY(EditDefaultsOnly)
-		float TankMaxDrivingForce = 100000000; //1g acceleration
+		float TankMaxDrivingForce = 80000000; //1g acceleration
 
 };

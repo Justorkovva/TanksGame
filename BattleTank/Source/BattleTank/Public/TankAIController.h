@@ -14,4 +14,7 @@ class BATTLETANK_API ATankAIController : public AAIController
 protected:
 	void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere)
+		bool CanFire = true;
 };
