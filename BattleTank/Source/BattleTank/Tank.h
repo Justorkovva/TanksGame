@@ -7,6 +7,7 @@ class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
+class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -38,9 +39,14 @@ public:
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(BlueprintReadOnly)
+		UTankMovementComponent* MovementComponent = nullptr; //mozemy w BP wyciagnac z tego jego funkcje
+
 private:
 	UTankBarrel* Barrel = nullptr;
 	UTankAimingComponent* AimingComponent = nullptr;
+
+	
 
 	UPROPERTY(EditAnywhere, Category = Firing)
 	float ReloadTimeInSeconds = 3;

@@ -5,13 +5,14 @@
 #include "Gameframework/Actor.h" 
 #include "BattleTank.h"
 #include "Projectile.h"
+#include "TankMovementComponent.h"
 
 ATank::ATank()
 {
- 	PrimaryActorTick.bCanEverTick = false;
-	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent")); 
-}
+	PrimaryActorTick.bCanEverTick = false;
+	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
 
+}
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
