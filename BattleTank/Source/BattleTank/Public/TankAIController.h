@@ -19,5 +19,5 @@ protected:
 		bool CanFire = true;
 
 	UPROPERTY(EditAnywhere)
-		float Distance = 1000;
+		float Distance = 3000;
 };
