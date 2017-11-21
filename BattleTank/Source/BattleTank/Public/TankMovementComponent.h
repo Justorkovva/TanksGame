@@ -9,9 +9,7 @@
 class ATank;
 class UTankTrack;
 
-/**
- * 
- */
+// movement of the tank
 UCLASS(meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankMovementComponent : public UNavMovementComponent
 {
@@ -32,6 +30,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Input)
 		void IntendMoveBackward(float Throw);
+
+	virtual void RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed) override;
 
 protected:
 //	UPROPERTY(BlueprintReadOnly)
