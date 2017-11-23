@@ -15,7 +15,7 @@ public:
 	void RotateTurret(float RelativeSpeed); //-1 left + 1 right
 
 private:
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditAnywhere, Category = "Setup")
 		float MaxDegreesPerSecond = 15;
 	/* moze trzeba bedzie uzyc, zeby prawo/lewo sie krecilo lepiej
 	UPROPERTY(EditAnywhere, Category = Setup)

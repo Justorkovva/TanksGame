@@ -10,29 +10,18 @@
 ATank::ATank()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
-
-
+	//AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent")); dodaje automatycznie do tank_bp
 }
-void ATank::BeginPlay()
+
+void ATank::BeginPlay() 
 {
 	Super::BeginPlay();
 }
 
 void ATank::AimAt(FVector HitLocation) 
 {
+	if (!AimingComponent) { return; }
 	AimingComponent -> AimAt(HitLocation, LaunchSpeed);
-}
-
-void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
-{
-	AimingComponent->SetBarrelReference(BarrelToSet); // przekazywana dalej do celowania
-	Barrel = BarrelToSet; // lokalna do wystrzalow
-}
-
-void ATank::SetTurretReference(UTankTurret* TurretToSet) 
-{
-	AimingComponent->SetTurretReference(TurretToSet);
 }
 
 void ATank::Fire()
@@ -48,9 +37,4 @@ void ATank::Fire()
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastFireTime = GetWorld()->GetTimeSeconds();
 	}
-}
-
-void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
