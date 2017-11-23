@@ -12,6 +12,7 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 	AimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
 
+
 }
 void ATank::BeginPlay()
 {
