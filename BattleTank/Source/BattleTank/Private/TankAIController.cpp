@@ -14,9 +14,15 @@ void ATankAIController::Tick(float DeltaTime)
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	auto ControlledTank = Cast<ATank>(GetPawn());
 
-	ControlledTank->AimAt(PlayerTank->GetActorLocation());
-	if(CanFire)
-	ControlledTank->Fire();
+	if (PlayerTank)
+	{
+
+		MoveToActor(PlayerTank,Distance);
+		ControlledTank->AimAt(PlayerTank->GetActorLocation());
+		if (CanFire)
+			ControlledTank->Fire();
+
+	}
 }
 
 
