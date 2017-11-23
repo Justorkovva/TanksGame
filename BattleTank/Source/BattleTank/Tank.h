@@ -42,13 +42,9 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 		UTankMovementComponent* MovementComponent = nullptr; //mozemy w BP wyciagnac z tego jego funkcje
 
-	UPROPERTY(BlueprintReadOnly)
-		UTankAimingComponent* AimingComponent = nullptr;
-
 private:
 	UTankBarrel* Barrel = nullptr;
-
-	
+	UTankAimingComponent* AimingComponent = nullptr;
 
 	
 
