@@ -14,7 +14,7 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::Initialise(UTankTurret* TankTurret, UTankBarrel* TankBarrel)
 {
-	if (!TankTurret || !TankBarrel) { return; }
+	if (!ensure(TankTurret) || !ensure (TankBarrel)) { return; }
 	Barrel= TankBarrel;
 	Turret = TankTurret;
 }
@@ -25,8 +25,8 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	//auto TankName = GetOwner()->GetName();
 	//auto BarrelLocation = Barrel->GetComponentLocation();
 	//UE_LOG(LogTemp, Warning, TEXT("%s is aiming from %s  at : %s"), *TankName, *BarrelLocation.ToString(), *HitLocation.ToString());
-	if (!Barrel) {return;}
-	if(!Turret) { return; }
+	if (!ensure(Barrel)) {return;}
+	if(!ensure(Turret)) { return; }
 
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
@@ -64,7 +64,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 void UTankAimingComponent::MoveBarrel(FVector AimDirection) 
 {
 
-	if (!Barrel) { return; }
+	if (!ensure(Barrel)) { return; }
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;

@@ -1,11 +1,9 @@
 #include "Tank.h"
 #include "TankAimingComponent.h"
-#include "TankTurret.h"
 #include "TankBarrel.h"
 #include "Gameframework/Actor.h" 
 #include "BattleTank.h"
 #include "Projectile.h"
-#include "TankMovementComponent.h"
 
 ATank::ATank()
 {
@@ -16,11 +14,12 @@ ATank::ATank()
 void ATank::BeginPlay() 
 {
 	Super::BeginPlay();
+	AimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::AimAt(FVector HitLocation) 
 {
-	if (!AimingComponent) { return; }
+	if (!ensure(AimingComponent)) { return; }
 	AimingComponent -> AimAt(HitLocation, LaunchSpeed);
 }
 

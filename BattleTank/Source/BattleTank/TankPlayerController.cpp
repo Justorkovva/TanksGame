@@ -26,7 +26,7 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardsCrosshair()  //celowanie 
 {
-	if (!GetControlledTank()) { return; }
+	if (!ensure(GetControlledTank())) { return; }
 	FVector OutHitLocation;
 	if (GetSightRayHitLocation(OutHitLocation)) { // sprawdzam czy nie celuje w niebo
 		GetControlledTank()->AimAt(OutHitLocation);

@@ -7,7 +7,6 @@ class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
-class UTankMovementComponent;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -28,9 +27,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Firing") //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
 		float LaunchSpeed = 4000;
-
-	UPROPERTY(BlueprintReadOnly)
-		UTankMovementComponent* MovementComponent = nullptr; //mozemy w BP wyciagnac z tego jego funkcje
 
 	UPROPERTY(BlueprintReadOnly)
 		UTankAimingComponent* AimingComponent = nullptr;
