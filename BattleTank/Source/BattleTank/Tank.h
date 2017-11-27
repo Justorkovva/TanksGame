@@ -4,8 +4,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankTurret;
 class AProjectile;
 
 UCLASS()
@@ -15,7 +13,6 @@ class BATTLETANK_API ATank : public APawn
 
 public:
 	ATank();
-	void AimAt(FVector HitLocation);
 
 	virtual void BeginPlay() override;
 	
@@ -25,18 +22,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 
-	UPROPERTY(EditAnywhere, Category = "Firing") //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
-		float LaunchSpeed = 4000;
-
-	UPROPERTY(BlueprintReadOnly)
-		UTankAimingComponent* AimingComponent = nullptr;
-
 private:
 	UTankBarrel* Barrel = nullptr;
 	
-
 	UPROPERTY(EditAnywhere, Category = "Firing")
 	float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
+
+	UPROPERTY(EditAnywhere, Category = "Firing") //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
+		float LaunchSpeed = 4000;
 
 };

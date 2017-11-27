@@ -25,7 +25,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Initialise(UTankTurret* TankTurret, UTankBarrel* TankBarrel);
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 private:
 	UTankAimingComponent();
@@ -38,5 +38,8 @@ private:
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Locked;
+
+	UPROPERTY(EditAnywhere, Category = "Firing") //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
+		float LaunchSpeed = 4000;
 
 };

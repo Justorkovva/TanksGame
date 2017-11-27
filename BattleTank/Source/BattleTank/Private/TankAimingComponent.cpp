@@ -19,12 +19,8 @@ void UTankAimingComponent::Initialise(UTankTurret* TankTurret, UTankBarrel* Tank
 	Turret = TankTurret;
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation)
 {
-	
-	//auto TankName = GetOwner()->GetName();
-	//auto BarrelLocation = Barrel->GetComponentLocation();
-	//UE_LOG(LogTemp, Warning, TEXT("%s is aiming from %s  at : %s"), *TankName, *BarrelLocation.ToString(), *HitLocation.ToString());
 	if (!ensure(Barrel)) {return;}
 	if(!ensure(Turret)) { return; }
 
@@ -48,11 +44,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal(); // zmieniam dlugi wektor na jednostkowy
 		MoveBarrel(AimDirection);
 		MoveTurret(AimDirection);
-
-		//auto TankName = GetOwner()->GetName();
-		//UE_LOG(LogTemp, Warning, TEXT(" %s is firing  at : %s"),*TankName, *AimDirection.ToString());
-		//auto Time = GetWorld()->GetTimeSeconds();
-		//UE_LOG(LogTemp, Warning, TEXT("%f : Aiming with speed "), Time);
 	}
 	else
 	{

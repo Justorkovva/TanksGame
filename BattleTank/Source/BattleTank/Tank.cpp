@@ -1,5 +1,4 @@
 #include "Tank.h"
-#include "TankAimingComponent.h"
 #include "TankBarrel.h"
 #include "Gameframework/Actor.h" 
 #include "BattleTank.h"
@@ -14,19 +13,13 @@ ATank::ATank()
 void ATank::BeginPlay() 
 {
 	Super::BeginPlay();
-	AimingComponent = FindComponentByClass<UTankAimingComponent>();
-}
-
-void ATank::AimAt(FVector HitLocation) 
-{
-	if (!ensure(AimingComponent)) { return; }
-	AimingComponent -> AimAt(HitLocation, LaunchSpeed);
 }
 
 void ATank::Fire()
 {
 	bool IsReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTimeInSeconds; //FPlatformTime::Seconds() inna funkcja na czas
 
+	UE_LOG(LogTemp, Warning, TEXT("I'm here"));
 	if (Barrel && IsReloaded) {
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 			Barrel->GetSocketLocation(FName("Projectile")),
