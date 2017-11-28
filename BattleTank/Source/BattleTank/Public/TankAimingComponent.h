@@ -35,6 +35,10 @@ private:
 	UTankAimingComponent();
 	UTankBarrel* Barrel = nullptr;
 	void MoveBarrel(FVector AimDirection);
+	bool IsMoving();
+
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 
 	UTankTurret* Turret = nullptr;
 	void MoveTurret(FVector AimDirection);
@@ -42,6 +46,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Firing")
 	float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
+
+	FVector AimDirection;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
