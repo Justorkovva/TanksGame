@@ -35,7 +35,7 @@ public:
 	EFiringState GetFiringState();
 
 	UFUNCTION(BlueprintCallable)
-	int GetProjectilesLeft();
+	int32 GetProjectilesLeft();
 
 private:
 	UTankAimingComponent();
@@ -54,6 +54,7 @@ private:
 	double LastFireTime = 0;
 	FVector AimDirection;
 
+	UPROPERTY(EditAnywhere, Category = "Firing")
 	int32 ProjectilesLeft = 3;
 	
 protected:
