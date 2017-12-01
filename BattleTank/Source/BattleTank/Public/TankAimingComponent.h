@@ -10,7 +10,8 @@ UENUM()
 enum class EFiringState: uint8 {
 	Reloading,
 	Aiming,
-	Locked	
+	Locked,
+	OutOfAmmo
 };
 
 class UTankBarrel; //Forward Declaration
@@ -31,6 +32,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Fire();
 
+	EFiringState GetFiringState();
+
+	UFUNCTION(BlueprintCallable)
+	int GetProjectilesLeft();
+
 private:
 	UTankAimingComponent();
 	UTankBarrel* Barrel = nullptr;
@@ -46,12 +52,15 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Firing")
 	float ReloadTimeInSeconds = 3;
 	double LastFireTime = 0;
-
 	FVector AimDirection;
+
+	int ProjectilesLeft = 5;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Aiming;
+	EFiringState FiringState = EFiringState::Reloading;
+
+	
 
 	UPROPERTY(EditAnywhere, Category = "Firing") //EditDefaultOnly oznaczaloby, ze nie mozna zmieniac dla osobnych tankow, tylko dla wszystkich na raz
 		float LaunchSpeed = 4000;

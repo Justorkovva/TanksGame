@@ -22,7 +22,9 @@ void ATankPlayerController::AimTowardsCrosshair()  //celowanie
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>(); 
 	if (!ensure(AimingComponent)) { return; }
 	FVector OutHitLocation;
-	if (GetSightRayHitLocation(OutHitLocation)) { // sprawdzam czy nie celuje w niebo
+	bool bGotHitLocation= GetSightRayHitLocation(OutHitLocation);
+
+	if (bGotHitLocation) { // sprawdzam czy nie celuje w niebo
 		AimingComponent->AimAt(OutHitLocation);
 	}
 }
@@ -36,9 +38,9 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{	
-		GetLookVectorHitLocation(LookDirection, OutHitLocation);
+		return GetLookVectorHitLocation(LookDirection, OutHitLocation);
 	}
-	return true;
+	return false;
 }
 
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const {
