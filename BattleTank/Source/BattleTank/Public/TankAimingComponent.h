@@ -54,7 +54,7 @@ private:
 	double LastFireTime = 0;
 	FVector AimDirection;
 
-	int ProjectilesLeft = 5;
+	int32 ProjectilesLeft = 3;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")

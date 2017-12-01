@@ -15,7 +15,9 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-	if ((GetWorld()->GetTimeSeconds() - LastFireTime) < ReloadTimeInSeconds)
+	if (ProjectilesLeft == 0)
+		FiringState = EFiringState::OutOfAmmo;
+	else if ((GetWorld()->GetTimeSeconds() - LastFireTime) < ReloadTimeInSeconds)
 		FiringState = EFiringState::Reloading;
 	else if (IsMoving())
 		FiringState = EFiringState::Aiming;
@@ -82,7 +84,7 @@ void UTankAimingComponent::MoveTurret(FVector AimDirection) {
 void UTankAimingComponent::Fire()
 {
 	if (Barrel && ProjectileBlueprint) {
-		if (FiringState != EFiringState::Reloading) {
+		if ((FiringState == EFiringState::Aiming) || FiringState == EFiringState::Locked) {
 			auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 				ProjectileBlueprint,
 				Barrel->GetSocketLocation(FName("Projectile")),
@@ -91,6 +93,8 @@ void UTankAimingComponent::Fire()
 
 			Projectile->LaunchProjectile(LaunchSpeed);
 			LastFireTime = GetWorld()->GetTimeSeconds();
+			ProjectilesLeft--;
+			UE_LOG(LogTemp, Warning, TEXT("Number of projectiles : %i"), ProjectilesLeft);
 		}
 	}
 }
@@ -109,5 +113,5 @@ EFiringState UTankAimingComponent::GetFiringState()
 
 int UTankAimingComponent::GetProjectilesLeft()
 {
-	return ProjectilesLeft;
+	return ProjectilesLeft;	
 }
