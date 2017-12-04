@@ -4,6 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "BattleTank.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "PhysicsEngine/RadialForceComponent.h"  
 #include "Projectile.generated.h"
 
 
@@ -21,7 +22,16 @@ public:
 		UParticleSystemComponent* ProjectileLaunchBlast=nullptr;
 
 	UPROPERTY(VisibleAnywhere)
+		UParticleSystemComponent* ProjectileImpactBlast = nullptr;
+
+	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* ProjectileCollision=nullptr;
+
+	UPROPERTY(VisibleAnywhere)
+		URadialForceComponent* ExplosionForce = nullptr;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
 protected:
 	virtual void BeginPlay() override;
