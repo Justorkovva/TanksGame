@@ -30,9 +30,16 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		URadialForceComponent* ExplosionForce = nullptr;
 
+	UPROPERTY(EditDefaultsOnly)
+		float DestroyDelay = 10.0;
+
+	UPROPERTY(EditDefaultsOnly)
+		float Damage = 20.0;
+
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
+	void OnTimerExpire();
 protected:
 	virtual void BeginPlay() override;
 

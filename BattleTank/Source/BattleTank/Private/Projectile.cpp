@@ -1,6 +1,9 @@
 
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
+#include "Public/TimerManager.h"
+#include "Engine/World.h"
+#include "Engine.h"
 
 AProjectile::AProjectile()
 {
@@ -22,7 +25,6 @@ AProjectile::AProjectile()
 
 	ExplosionForce = CreateDefaultSubobject<URadialForceComponent>(FName("Explosion Force"));
 	ExplosionForce->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-
 }
 
 void AProjectile::BeginPlay()
@@ -41,9 +43,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	ProjectileLaunchBlast->Deactivate();
 	ProjectileImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
-	
 	SetRootComponent(ProjectileImpactBlast);
 	ProjectileCollision->DestroyComponent();
+
+	FTimerHandle Timer;
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &AProjectile::OnTimerExpire, DestroyDelay, false);
+
+		UGameplayStatics::ApplyRadialDamage(this, Damage, GetActorLocation(), ExplosionForce->Radius, 
+			UDamageType::StaticClass(), TArray<AActor*>());
 }
 
 void AProjectile::LaunchProjectile(float Speed)
@@ -51,4 +58,9 @@ void AProjectile::LaunchProjectile(float Speed)
 	//UE_LOG(LogTemp, Error, TEXT("FIRE!!!"));
 	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * Speed);
 	ProjectileMovement->Activate();
+}
+
+void AProjectile::OnTimerExpire()
+{
+	Destroy();
 }
