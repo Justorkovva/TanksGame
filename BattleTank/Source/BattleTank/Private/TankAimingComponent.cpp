@@ -94,7 +94,6 @@ void UTankAimingComponent::Fire()
 			Projectile->LaunchProjectile(LaunchSpeed);
 			LastFireTime = GetWorld()->GetTimeSeconds();
 			ProjectilesLeft--;
-			UE_LOG(LogTemp, Warning, TEXT("Number of projectiles : %i"), ProjectilesLeft);
 		}
 	}
 }
