@@ -41,8 +41,9 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	ProjectileLaunchBlast->Deactivate();
 	ProjectileImpactBlast->Activate();
 	ExplosionForce->FireImpulse();
-	//wait
-	//ExplosionForce->Deactivate();
+	
+	SetRootComponent(ProjectileImpactBlast);
+	ProjectileCollision->DestroyComponent();
 }
 
 void AProjectile::LaunchProjectile(float Speed)
