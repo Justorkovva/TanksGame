@@ -18,4 +18,10 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 		float Distance = 3000;
+
+private:
+	void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+		void OnPossessedTankDeath();
 };
