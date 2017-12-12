@@ -38,4 +38,10 @@ public:
 	UPROPERTY(EditAnywhere)
 		float LineTraceRange = 1000000; // obstawiam, ze jest w centymetrach
 
+private:
+
+	void SetPawn(APawn* InPawn) override;
+
+	UFUNCTION()
+		void OnTankDeath();
 };
