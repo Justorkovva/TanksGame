@@ -5,5 +5,4 @@ the magnitudes of the rest of quantities (force, impulse..)
 - Menu collision - when opens by menu-level tanks have only one main collision on the body - 
 the collision on tracks doesn't work, so they cannot move and are 40% in the ground.
 
-- Movement - something changed and now tank move bad when it is on not-flat surface. 
-Move bad or stop moving at all.
+- add powerups, or trigger volumes with extra health/ammo/shield
