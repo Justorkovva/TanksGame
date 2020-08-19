@@ -11,7 +11,7 @@ Tanks Battle with AI.
 
 ## General Information
 
-This was my first project in UE4, made as a part of this [course](https://www.udemy.com/course/unrealcourse/).
+This was my first game in UE4, made as a part of this [course](https://www.udemy.com/course/unrealcourse/).
 
 
 
